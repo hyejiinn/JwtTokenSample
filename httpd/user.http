@@ -1,0 +1,21 @@
+### [로그인 성공테스트]
+POST http://localhost:8080/v1/login
+Content-Type: application/json
+
+{
+    "email" : "test123@test.com",
+    "password": "1234"
+}
+
+###
+GET  http://localhost:8080/v1/test
+
+### 회원가입 테스트
+POST http://localhost:8080/v1/signup
+Content-Type: application/json
+
+{
+  "email": "user@test.com",
+  "password": "1231",
+  "name": "사용자"
+}
