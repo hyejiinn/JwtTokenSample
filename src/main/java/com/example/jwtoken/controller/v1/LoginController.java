@@ -34,7 +34,7 @@ public class LoginController extends BaseController
 	public ResponseEntity<ApiResponse> test()
 	{
 		log.info("test");
-		return resSuccess(null);
+		return resOk(null);
 	}
 
 	@PostMapping("/login")
@@ -43,7 +43,7 @@ public class LoginController extends BaseController
 		// TODO 유효성 검증 필요
 		JwtTokenRes jwtTokenRes = loginService.getUserInfoBy(req);
 		log.info("[user login] email !!!!!!!!!!!!: {}", jwtTokenRes.getEmail());
-		return resSuccess(jwtTokenRes);
+		return resOk(jwtTokenRes);
 	}
 
 	@GetMapping("/login/kakao")
@@ -63,18 +63,14 @@ public class LoginController extends BaseController
 		log.info("userInfo.getNickname() = {}" , userInfo.getNickname());
 		log.info("accessToken = {}" , accessToken);
 
-		return resSuccess(jwtTokenRes);
+		return resOk(jwtTokenRes);
 	}
 
 	@PostMapping("/signup")
 	public ResponseEntity<ApiResponse> signup(@RequestBody SignupReq req) {
 
-		if (loginService.getUserInfoBy(new LoginReq(req.getEmail(), req.getPassword())) == null) {
-			resOk(ApiMessage.DUPLICATE);
-		}
-
 		JwtTokenRes jwtTokenRes = loginService.signup(req);
-		return resSuccess(jwtTokenRes);
+		return  jwtTokenRes == null ? resOk(ApiMessage.DUPLICATE) :  resOk(jwtTokenRes);
 	}
 
 }

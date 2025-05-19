@@ -33,6 +33,10 @@ public class ApiResponse
 		return new ApiResponse(ApiMessage.SUCCESS, data);
 	}
 
+	public static ApiResponse success(ApiMessage apiMessage) {
+		return new ApiResponse(apiMessage);
+	}
+
 	public static ApiResponse fail(ApiMessage apiMessage)
 	{
 		return new ApiResponse(apiMessage);

@@ -53,6 +53,9 @@ public class LoginServiceImpl implements LoginService
 	@Override
 	public JwtTokenRes signup(SignupReq signupReq) {
 
+		if (userRepository.findByEmail(signupReq.getEmail()).isPresent()) {
+			return null;
+		}
 		// 1. 회원 가입
 		User user = userRepository.save(User.of(signupReq));
 

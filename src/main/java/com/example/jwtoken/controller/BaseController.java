@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 public class BaseController
 {
 
-	protected ResponseEntity<ApiResponse> resSuccess(Object data)
+	protected ResponseEntity<ApiResponse> resOk(Object data)
 	{
 		return ResponseEntity.ok()
 				.contentType(MediaType.APPLICATION_JSON)
